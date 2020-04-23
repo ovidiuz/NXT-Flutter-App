@@ -1,6 +1,11 @@
 
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutterapp/main.dart';
+
+import 'home_page.dart';
 
 class SignUpPage extends StatefulWidget {
   static String tag = 'signup-page';
@@ -80,7 +85,19 @@ class _SignUpPageState extends State<SignUpPage> {
       child: MaterialButton(
         minWidth: 200.0,
         height: 45.0,
-        onPressed: (){},
+        onPressed: () {
+          var response = attemptSignUp(
+              username.controller.text,
+              email.controller.text,
+              password.controller.text
+          );
+          response.then((res) {
+            print(res);
+            var token = jsonDecode(res)['token'];
+            storage.write(key: "jwt", value: token);
+            Navigator.of(context).pushNamed(HomePage.tag);
+          });
+        },
         shape: new RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30.0)
         ),

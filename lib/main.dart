@@ -34,7 +34,6 @@ Future<String> attemptSignUp(String username, String email, String password) asy
         "password": password
       }
   );
-  print(res.statusCode);
   if(res.statusCode == 200) return res.body;
   return null;
 }

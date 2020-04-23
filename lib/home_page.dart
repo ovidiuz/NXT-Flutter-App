@@ -15,6 +15,7 @@ Future<String> getUserDetails() async {
       "token": token
     }
   );
+  print(res.body);
   if (res.statusCode == 200) return res.body;
   return null;
 }
