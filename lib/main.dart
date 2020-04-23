@@ -3,6 +3,7 @@ import 'package:english_words/english_words.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutterapp/home_page.dart';
 import 'package:flutterapp/login_page.dart';
+import 'package:flutterapp/signup_page.dart';
 
 import 'package:http/http.dart' as http;
 
@@ -43,7 +44,8 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   final routes = <String, WidgetBuilder>{
     LoginPage.tag: (context) => LoginPage(),
-    HomePage.tag: (context) => HomePage()
+    HomePage.tag: (context) => HomePage(),
+    SignUpPage.tag: (context) => SignUpPage()
   };
 
   @override

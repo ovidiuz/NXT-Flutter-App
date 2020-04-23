@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/home_page.dart';
 import 'package:flutterapp/main.dart';
+import 'package:flutterapp/signup_page.dart';
 
 class LoginPage extends StatefulWidget {
   static String tag = 'login-page';
@@ -39,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
       tag: 'hero',
       child: CircleAvatar(
         backgroundColor: Colors.transparent,
-        radius: 48.0,
+        radius: 60.0,
         child: Image.asset('assets/logo.png')
       )
     );
@@ -72,34 +73,39 @@ class _LoginPageState extends State<LoginPage> {
 
     final loginButton = Padding(
       padding: EdgeInsets.symmetric(vertical: 16.0),
-      child: Material(
-        borderRadius: BorderRadius.circular(30.0),
-        shadowColor: Colors.lightBlueAccent.shade100,
-        elevation: 5.0,
-        child: MaterialButton(
-          minWidth: 200.0,
-          height: 42.0,
-          onPressed: (){
-            print("Hahaha");
-            print(email.controller.text);
-            print(email.initialValue);
-            print(password.initialValue);
-            print(password.controller.text);
-            var status = attemptLogIn(email.controller.text, password.controller.text);
-            print(status);
-            status.then((response) {
-              print(response);
-              if (response != null) {
-                var token = jsonDecode(response)['token'];
-                storage.write(key: "jwt", value: token);
-                Navigator.of(context).pushNamed(HomePage.tag);
-              }
-            });
-          },
-          color: Colors.lightBlueAccent,
-          child: Text('Log In', style: TextStyle(color: Colors.white)),
+      child: MaterialButton(
+        minWidth: 200.0,
+        height: 45.0,
+        onPressed: (){
+          print("Hahaha");
+          print(email.controller.text);
+          print(email.initialValue);
+          print(password.initialValue);
+          print(password.controller.text);
+          var status = attemptLogIn(email.controller.text, password.controller.text);
+          print(status);
+          status.then((response) {
+            print(response);
+            if (response != null) {
+              var token = jsonDecode(response)['token'];
+              storage.write(key: "jwt", value: token);
+              Navigator.of(context).pushNamed(HomePage.tag);
+            }
+          });
+        },
+        shape: new RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30.0)
         ),
-      )
+        color: Colors.lightBlueAccent,
+        child: Text('Log In', style: TextStyle(color: Colors.white)),
+      ),
+    );
+
+    final signUpLabel = FlatButton(
+      child: Text("Don't have an account yet? Sign up", style: TextStyle(color: Colors.black54)),
+      onPressed: () {
+        Navigator.of(context).pushNamed(SignUpPage.tag);
+      },
     );
 
     final forgotLabel = FlatButton(
@@ -119,8 +125,9 @@ class _LoginPageState extends State<LoginPage> {
             email,
             SizedBox(height: 8.0),
             password,
-            SizedBox(height: 24.0),
+            SizedBox(height: 8.0),
             loginButton,
+            signUpLabel,
             forgotLabel
           ],
         )
