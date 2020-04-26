@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/home_page.dart';
 import 'package:flutterapp/main.dart';
+import 'package:flutterapp/profile_page.dart';
 import 'package:flutterapp/signup_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -89,7 +90,7 @@ class _LoginPageState extends State<LoginPage> {
             if (response != null) {
               var token = jsonDecode(response)['token'];
               storage.write(key: "jwt", value: token);
-              Navigator.of(context).pushNamed(HomePage.tag);
+              Navigator.of(context).pushNamed(ProfilePage.tag);
             }
           });
         },
