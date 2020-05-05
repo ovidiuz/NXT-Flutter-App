@@ -41,39 +41,21 @@ class _ProfilePageState extends State<ProfilePage> {
     final httpResponse = _getUserDetails();
     try {
       httpResponse.then((res) {
-        print(res);
         var parsedJson = jsonDecode(res);
         var followingList = parsedJson['following'];
         var followersList = parsedJson['following'];
-        _followingNo = followingList.length;
-        _followersNo = followersList.length;
+        setState(() {
+          _followingNo = followingList.length;
+          _followersNo = followersList.length;
+        });
       });
     } on Exception catch (e) {
       print(e);
     }
-    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-
-    print(_followingNo);
-    print(_followersNo);
-//    String userInfo;
-//    int followingNo;
-//    final httpResponse = _getUserDetails();
-//    try {
-//      httpResponse.then((res) {
-//        print(res);
-//        var parsedJson = jsonDecode(res);
-//        var followingList = parsedJson['following'];
-//        followingNo = followingList.length;
-//        print(followingNo);
-//      });
-//    } on Exception catch (e) {
-//      print(e);
-//    }
-
 
     final hero = Hero(
         tag: 'hero',
@@ -145,7 +127,6 @@ class _ProfilePageState extends State<ProfilePage> {
         )
       ],
     );
-
 
     return Scaffold(
       backgroundColor: Colors.blue[600],

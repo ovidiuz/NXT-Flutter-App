@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/home_page.dart';
 import 'package:flutterapp/main.dart';
+import 'package:flutterapp/news_feed.dart';
 import 'package:flutterapp/profile_page.dart';
 import 'package:flutterapp/signup_page.dart';
 
@@ -78,11 +79,11 @@ class _LoginPageState extends State<LoginPage> {
         minWidth: 200.0,
         height: 45.0,
         onPressed: (){
-          print("Hahaha");
-          print(email.controller.text);
-          print(email.initialValue);
-          print(password.initialValue);
-          print(password.controller.text);
+//          print("Hahaha");
+//          print(email.controller.text);
+//          print(email.initialValue);
+//          print(password.initialValue);
+//          print(password.controller.text);
           var status = attemptLogIn(email.controller.text, password.controller.text);
           print(status);
           status.then((response) {
@@ -90,7 +91,7 @@ class _LoginPageState extends State<LoginPage> {
             if (response != null) {
               var token = jsonDecode(response)['token'];
               storage.write(key: "jwt", value: token);
-              Navigator.of(context).pushNamed(ProfilePage.tag);
+              Navigator.of(context).pushNamed(NewsFeed.tag);
             }
           });
         },

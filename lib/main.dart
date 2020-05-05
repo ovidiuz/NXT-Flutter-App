@@ -1,10 +1,14 @@
+
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:flutterapp/comments_page.dart';
 import 'package:flutterapp/home_page.dart';
 import 'package:flutterapp/login_page.dart';
+import 'package:flutterapp/news_feed.dart';
 import 'package:flutterapp/profile_page.dart';
 import 'package:flutterapp/signup_page.dart';
+import 'package:flutterapp/widgets/post_card.dart';
 
 import 'package:http/http.dart' as http;
 
@@ -48,7 +52,9 @@ class MyApp extends StatelessWidget {
     LoginPage.tag: (context) => LoginPage(),
     HomePage.tag: (context) => HomePage(),
     SignUpPage.tag: (context) => SignUpPage(),
-    ProfilePage.tag: (context) => ProfilePage()
+    ProfilePage.tag: (context) => ProfilePage(),
+    NewsFeed.tag: (context) => NewsFeed(),
+    CommentsPage.tag: (context) => CommentsPage(ModalRoute.of(context).settings.arguments)
   };
 
   @override
